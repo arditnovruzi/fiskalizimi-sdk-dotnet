@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace CRM.Flexie.Fiskalizimi
@@ -75,6 +76,13 @@ namespace CRM.Flexie.Fiskalizimi
 
         public string? Errors { get; set; }
 
+        protected Dictionary<string, object>? _enrich;
+
+        internal void EnrichInvoice(Dictionary<string, object> additionalData)
+        {
+            _enrich = additionalData;
+        }
+
         public string ToJSON()
         {
             // Try to validate first 
@@ -93,6 +101,11 @@ namespace CRM.Flexie.Fiskalizimi
                     string key = prop.Name;
                     invoiceMap[char.ToLower(key[0]) + key.Substring(1)] = prop.GetValue(this);
                 }
+            }
+
+            if (_enrich?.Count > 0)
+            {
+                _enrich.ToList().ForEach(x => invoiceMap.Add(x.Key, x.Value));
             }
 
             return JsonConvert.SerializeObject(invoiceMap, Formatting.Indented);
@@ -116,6 +129,11 @@ namespace CRM.Flexie.Fiskalizimi
                     string key = prop.Name;
                     invoiceMap[char.ToLower(key[0]) + key.Substring(1)] = prop.GetValue(this);
                 }
+            }
+
+            if (_enrich?.Count > 0)
+            {
+                _enrich.ToList().ForEach(x => invoiceMap.Add(x.Key, x.Value));
             }
 
             return invoiceMap;

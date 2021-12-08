@@ -24,6 +24,7 @@ namespace CRM.Flexie.Fiskalizimi
         {
             Invoice = invoice;
             NewInvoiceToFlexie();
+
             return Invoice;
         }
 
@@ -42,8 +43,7 @@ namespace CRM.Flexie.Fiskalizimi
                 {
                     string result = res.Content.ReadAsStringAsync().Result;
                     Dictionary<string, object> responseData = JsonConvert.DeserializeObject<Dictionary<string, object>>(result);
-
-                    Console.WriteLine(result);
+                    Invoice.EnrichInvoice(responseData);
                 } else
                 {
                     throw new Exception("There was an error on HTTP request, failed with code " + res.StatusCode.ToString());
