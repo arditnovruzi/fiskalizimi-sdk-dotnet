@@ -1,0 +1,10 @@
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\bin\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.deps.json
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\bin\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.dll
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\bin\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.pdb
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\obj\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.csproj.AssemblyReference.cache
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\obj\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\obj\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.AssemblyInfoInputs.cache
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\obj\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.AssemblyInfo.cs
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\obj\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.csproj.CoreCompileInputs.cache
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\obj\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.dll
+C:\Users\Flexie\source\repos\CRM.Flexie.Fiskalizimi\obj\Release\netstandard2.1\CRM.Flexie.Fiskalizimi.pdb
