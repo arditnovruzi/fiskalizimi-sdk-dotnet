@@ -11,7 +11,7 @@ git clone https://github.com/flexie-crm/fiskalizimi-sdk-dotnet.git
 Copy as a new project within your Visual Studio Solution
 ```
 
-Fiskalizimi PHP .NET is using Newtonsoft.Json, JWT and System.ComponentModel.Annotations dependences. Target frameworks are netstandard 2.0 and netstandard 2.1 
+Fiskalizimi .NET is using Newtonsoft.Json, JWT and System.ComponentModel.Annotations dependences. Target frameworks are netstandard 2.0 and netstandard 2.1 
 
 
 ## Usage in your own project/solution
