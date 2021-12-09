@@ -11,7 +11,7 @@ git clone https://github.com/flexie-crm/fiskalizimi-sdk-dotnet.git
 Copy as a new project within your Visual Studio Solution
 ```
 
-Fiskalizimi PHP .NET is using Newtonsoft.Json, JWT and System.ComponentModel.Annotations dependences. Target frameworks are netstandard 2.0 and netstandard 2.1 
+Fiskalizimi .NET is using Newtonsoft.Json, JWT and System.ComponentModel.Annotations dependences. Target frameworks are netstandard 2.0 and netstandard 2.1 
 
 
 ## Usage in your own project/solution
@@ -26,8 +26,8 @@ using CRM.Flexie.Fiskalizimi;
 Invoice invoice = new Invoice()
 {
     // Invoice Details
-    InvoiceType = "b2b",
-    BusinessProcess = "P1",
+    InvoiceType = Fx.B2B,
+    BusinessProcess = Fx.BUSINESS_PROCESS_P1,
     PaymentMethod = "ACCOUNT",
     PaymentType = "NONCASH",
     Currency = "ALL",
@@ -73,7 +73,7 @@ foreach (var fakeItem in new int[] { 1, 2 })
             QtyUnit = "Cope",
             QtyUnitUblCode = "XPP",
             Price = 100,
-            VatRate = "0.20",
+            VatRate = Fx.VAT_20,
             TotalBeforeVat = 100,
             TotalAfterVat = 120,
             VatTotal = 20
