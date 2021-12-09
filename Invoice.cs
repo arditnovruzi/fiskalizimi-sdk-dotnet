@@ -76,6 +76,8 @@ namespace CRM.Flexie.Fiskalizimi
 
         public string? Errors { get; set; }
 
+        public Dictionary<string, object> FlexieWorkflowAdditionalData { get; set; }
+
         protected Dictionary<string, object>? _enrich;
 
         internal void EnrichInvoice(Dictionary<string, object> additionalData)
