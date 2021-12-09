@@ -23,12 +23,12 @@ namespace CRM.Flexie.Fiskalizimi
         public Invoice NewInvoice(Invoice invoice, string method = "sync")
         {
             Invoice = invoice;
-            NewInvoiceToFlexie();
+            NewInvoiceToFlexieAsync().Wait();
 
             return Invoice;
         }
 
-        protected void NewInvoiceToFlexie()
+        protected async Task NewInvoiceToFlexieAsync()
         {
             if (Invoice != null && Invoice?.GetType().GetProperties().Length == 0)
             {
@@ -37,11 +37,11 @@ namespace CRM.Flexie.Fiskalizimi
 
             try
             {
-                var res = SendPayload(Endpoint.FX_NEW_INVOICE, Invoice.ToJSON()).Result;
+                var res = await SendPayload(Endpoint.FX_NEW_INVOICE, Invoice.ToJSON());
 
                 if (res.IsSuccessStatusCode)
                 {
-                    string result = res.Content.ReadAsStringAsync().Result;
+                    string result = await res.Content.ReadAsStringAsync();
                     Dictionary<string, object> responseData = JsonConvert.DeserializeObject<Dictionary<string, object>>(result);
                     Invoice.EnrichInvoice(responseData);
                 }
