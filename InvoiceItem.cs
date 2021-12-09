@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace CRM.Flexie.Fiskalizimi
 {
@@ -24,7 +22,7 @@ namespace CRM.Flexie.Fiskalizimi
         public double VatTotal { get; set; }
 
         [RegularExpression("(0.20|0.10|0.06|TYPE_1|TYPE_2|MARGIN_SCHEME)", ErrorMessage = "Allowed values in VatRate are 0.20|0.10|0.06|TYPE_1|TYPE_2|MARGIN_SCHEME")]
-        public string? VatRate { get; set; } 
+        public string? VatRate { get; set; }
 
         public double TotalBeforeVat { get; set; }
 
@@ -53,7 +51,7 @@ namespace CRM.Flexie.Fiskalizimi
             return JsonConvert.SerializeObject(invoiceMap);
         }
 
-        public Dictionary<string, object> ToArray()
+        public Dictionary<string, object> ToDictionary()
         {
             // Try to validate first 
             var validation = Fx.ValidateData(this);

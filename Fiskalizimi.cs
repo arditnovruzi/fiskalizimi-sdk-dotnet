@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Http;
+﻿using JWT.Algorithms;
 using JWT.Builder;
-using JWT.Algorithms;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CRM.Flexie.Fiskalizimi
 {
@@ -44,11 +44,13 @@ namespace CRM.Flexie.Fiskalizimi
                     string result = res.Content.ReadAsStringAsync().Result;
                     Dictionary<string, object> responseData = JsonConvert.DeserializeObject<Dictionary<string, object>>(result);
                     Invoice.EnrichInvoice(responseData);
-                } else
+                }
+                else
                 {
                     throw new Exception("There was an error on HTTP request, failed with code " + res.StatusCode.ToString());
                 }
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }

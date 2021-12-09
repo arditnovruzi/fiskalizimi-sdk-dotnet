@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace CRM.Flexie.Fiskalizimi
 {
@@ -111,7 +111,7 @@ namespace CRM.Flexie.Fiskalizimi
             return JsonConvert.SerializeObject(invoiceMap, Formatting.Indented);
         }
 
-        public Dictionary<string, object> ToArray()
+        public Dictionary<string, object> ToDictionary()
         {
             // Try to validate first 
             var validation = Fx.ValidateData(this);
