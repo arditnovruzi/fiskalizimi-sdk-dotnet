@@ -43,6 +43,7 @@ namespace CRM.Flexie.Fiskalizimi
         public const string VAT_TYPE_1 = "TYPE_1";
         public const string VAT_TYPE_2 = "TYPE_2";
         public const string VAT_MARGIN = "MARGIN_SCHEME";
+        public const string VAT_EXPORT_OF_GOODS = "EXPORT_OF_GOODS";
 
         public static List<ValidationResult> ValidateData(Object instance)
         {

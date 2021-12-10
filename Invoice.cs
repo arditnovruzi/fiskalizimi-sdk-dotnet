@@ -9,10 +9,6 @@ namespace CRM.Flexie.Fiskalizimi
 {
     public class Invoice
     {
-        public string? OperatorCode { get; set; }
-
-        public string? TcrCode { get; set; }
-
         public string? ClientName { get; set; }
 
         public string? ClientNuis { get; set; }
@@ -39,7 +35,41 @@ namespace CRM.Flexie.Fiskalizimi
         public string? PeriodEnd { get; set; }
 
         [RegularExpression("(ACCOUNT|BANKNOTE|CARD|CHECK|SVOUCHER|COMPANY|ORDER|FACTORING|COMPENSATION|TRANSFER|WAIVER|KIND|OTHER)", ErrorMessage = "Allowed values in PaymentMethod are ACCOUNT|BANKNOTE|CARD|CHECK|SVOUCHER|COMPANY|ORDER|FACTORING|COMPENSATION|TRANSFER|WAIVER|KIND|OTHER")]
-        public string? PaymentMethod { get; set; }
+        public string? PaymentMethod 
+        {
+            get 
+            { 
+                return _paymentMethod; 
+            } 
+
+            set
+            {
+                switch(value)
+                {
+                    case Fx.PAYMENT_METHOD_CASH:
+                    case Fx.PAYMENT_METHOD_CREDIT_CARD:
+                    case Fx.PAYMENT_METHOD_CHECK:
+                    case Fx.PAYMENT_METHOD_SVOUCHER:
+                    case Fx.PAYMENT_METHOD_COMPANY:
+                    case Fx.PAYMENT_METHOD_ORDER:
+                        PaymentType = "CASH";
+                        break;
+                    case Fx.PAYMENT_METHOD_BANK:
+                    case Fx.PAYMENT_METHOD_FACTORING:
+                    case Fx.PAYMENT_METHOD_COMPENSATION:
+                    case Fx.PAYMENT_METHOD_TRANSFER:
+                    case Fx.PAYMENT_METHOD_WAIVER:
+                    case Fx.PAYMENT_METHOD_KIND:
+                    case Fx.PAYMENT_METHOD_OTHER:
+                        PaymentType = "NONCASH";
+                        break;
+                }
+
+                _paymentMethod = value;
+            } 
+        }
+
+        private string? _paymentMethod;
 
         [RegularExpression("(CASH|NONCASH)", ErrorMessage = "Allowed values in PaymentType are CASH|NONCASH")]
         public string? PaymentType { get; set; }
@@ -78,6 +108,12 @@ namespace CRM.Flexie.Fiskalizimi
 
         public Dictionary<string, object>? FlexieWorkflowAdditionalData { get; set; }
 
+        private string? OperatorCode { get; set; }
+
+        private string? TcrCode { get; set; }
+
+        private string? InvoiceNumber { get; set; }
+
         protected Dictionary<string, object>? _enrich;
 
         internal void EnrichInvoice(Dictionary<string, object> additionalData)
@@ -96,6 +132,22 @@ namespace CRM.Flexie.Fiskalizimi
 
             Dictionary<string, object> invoiceMap = new Dictionary<string, object>();
 
+            // Check for overrides
+            if (TcrCode != null)
+            {
+                invoiceMap.Add("tcrCode", TcrCode);
+            }
+
+            if (OperatorCode != null)
+            {
+                invoiceMap.Add("operatorCode", OperatorCode);
+            }
+
+            if (InvoiceNumber != null)
+            {
+                invoiceMap.Add("invoiceNumber", InvoiceNumber);
+            }
+
             foreach (var prop in GetType().GetProperties())
             {
                 if (prop.GetValue(this) != null)
@@ -107,7 +159,13 @@ namespace CRM.Flexie.Fiskalizimi
 
             if (_enrich?.Count > 0)
             {
-                _enrich.ToList().ForEach(x => invoiceMap.Add(x.Key, x.Value));
+                _enrich.ToList().ForEach(x =>
+                {
+                    if (!invoiceMap.ContainsKey(x.Key))
+                    {
+                        invoiceMap.Add(x.Key, x.Value);
+                    }
+                });
             }
 
             return JsonConvert.SerializeObject(invoiceMap, Formatting.Indented);
@@ -124,6 +182,22 @@ namespace CRM.Flexie.Fiskalizimi
 
             Dictionary<string, object> invoiceMap = new Dictionary<string, object>();
 
+            // Check for overrides
+            if (TcrCode != null)
+            {
+                invoiceMap.Add("tcrCode", TcrCode);
+            }
+
+            if (OperatorCode != null)
+            {
+                invoiceMap.Add("operatorCode", OperatorCode);
+            }
+
+            if (InvoiceNumber != null)
+            {
+                invoiceMap.Add("invoiceNumber", InvoiceNumber);
+            }
+
             foreach (var prop in GetType().GetProperties())
             {
                 if (prop.GetValue(this) != null)
@@ -135,11 +209,31 @@ namespace CRM.Flexie.Fiskalizimi
 
             if (_enrich?.Count > 0)
             {
-                _enrich.ToList().ForEach(x => invoiceMap.Add(x.Key, x.Value));
+                _enrich.ToList().ForEach(x => 
+                {
+                    if (!invoiceMap.ContainsKey(x.Key))
+                    {
+                        invoiceMap.Add(x.Key, x.Value); 
+                    }
+                });
             }
 
             return invoiceMap;
         }
 
+        public void OverrideTcrCode(string tcrCode)
+        {
+            this.TcrCode = tcrCode;
+        }
+
+        public void OverrideOperatorCode(string operatorCode)
+        {
+            this.OperatorCode = operatorCode;
+        }
+
+        public void OverrideInvoiceNumber(string invoiceNumber)
+        {
+            this.InvoiceNumber = invoiceNumber;
+        }
     }
 }
