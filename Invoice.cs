@@ -114,6 +114,9 @@ namespace CRM.Flexie.Fiskalizimi
 
         private string? InvoiceNumber { get; set; }
 
+        [RegularExpression("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([+-][0-9]{2}:[0-9]{2}|Z)", ErrorMessage = "Invalid date time ISO 8601, dateTimeIssues should look like this: 2022-01-24T22:00:58+01:00")]
+        private string? DateTimeIssued { get; set; }
+
         protected Dictionary<string, object>? _enrich;
 
         internal void EnrichInvoice(Dictionary<string, object> additionalData)
@@ -146,6 +149,11 @@ namespace CRM.Flexie.Fiskalizimi
             if (InvoiceNumber != null)
             {
                 invoiceMap.Add("invoiceNumber", InvoiceNumber);
+            }
+
+            if (DateTimeIssued != null)
+            {
+                invoiceMap.Add("dateTimeIssued", DateTimeIssued);
             }
 
             foreach (var prop in GetType().GetProperties())
@@ -198,6 +206,11 @@ namespace CRM.Flexie.Fiskalizimi
                 invoiceMap.Add("invoiceNumber", InvoiceNumber);
             }
 
+            if (DateTimeIssued != null)
+            {
+                invoiceMap.Add("dateTimeIssued", DateTimeIssued);
+            }
+
             foreach (var prop in GetType().GetProperties())
             {
                 if (prop.GetValue(this) != null)
@@ -234,6 +247,11 @@ namespace CRM.Flexie.Fiskalizimi
         public void OverrideInvoiceNumber(string invoiceNumber)
         {
             this.InvoiceNumber = invoiceNumber;
+        }
+
+        public void OverrideDateTimeIssues(string dateTimeIssued)
+        {
+            this.DateTimeIssued = dateTimeIssued;
         }
     }
 }
