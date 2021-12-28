@@ -21,7 +21,7 @@ namespace CRM.Flexie.Fiskalizimi
 
         public double VatTotal { get; set; }
 
-        [RegularExpression("(0.20|0.10|0.06|TYPE_1|TYPE_2|MARGIN_SCHEME)", ErrorMessage = "Allowed values in VatRate are 0.20|0.10|0.06|TYPE_1|TYPE_2|MARGIN_SCHEME")]
+        [RegularExpression("(0.20|0.10|0.06|0.00|TYPE_1|TYPE_2|MARGIN_SCHEME)", ErrorMessage = "Allowed values in VatRate are 0.20|0.10|0.06|0.00|TYPE_1|TYPE_2|MARGIN_SCHEME")]
         public string? VatRate { get; set; }
 
         public double TotalBeforeVat { get; set; }
