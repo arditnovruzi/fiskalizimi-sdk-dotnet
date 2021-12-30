@@ -96,6 +96,11 @@ namespace CRM.Flexie.Fiskalizimi
         [Required(ErrorMessage = "TotalAfterVat is a required field.")]
         public double TotalAfterVat { get; set; }
 
+        public string? ReferenceInvoiceNslf { get; set; }
+
+        [RegularExpression("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}([+-][0-9]{2}:[0-9]{2}|Z)", ErrorMessage = "Invalid date time ISO 8601, referenceInvoiceDateTimeIssued should look like this: 2022-01-24T22:00:58+01:00")]
+        public string? ReferenceInvoiceDateTimeIssued { get; set; }
+
         [Required(ErrorMessage = "There can't be an invoice without invoice items, please provide at least one invoice item.")]
         public List<Dictionary<string, object>>? Items { get; set; }
 

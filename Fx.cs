@@ -12,6 +12,7 @@ namespace CRM.Flexie.Fiskalizimi
         public const string B2C = "b2c";
         public const string AUTO_INVOICE = "auto";
         public const string EXPORT_INVOICE = "export";
+        public const string CORRECTIVE_INVOICE = "corrective";
 
         public const string AUTO_INVOICE_AGREEMENT = "AGREEMENT";
         public const string AUTO_INVOICE_DOMESTIC = "DOMESTIC";
@@ -40,6 +41,7 @@ namespace CRM.Flexie.Fiskalizimi
         public const string VAT_20 = "0.20";
         public const string VAT_10 = "0.10";
         public const string VAT_6 = "0.06";
+        public const string VAT_0 = "0.00";
         public const string VAT_TYPE_1 = "TYPE_1";
         public const string VAT_TYPE_2 = "TYPE_2";
         public const string VAT_MARGIN = "MARGIN_SCHEME";
