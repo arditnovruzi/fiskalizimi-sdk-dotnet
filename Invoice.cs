@@ -21,7 +21,7 @@ namespace CRM.Flexie.Fiskalizimi
 
         public string? ClientCountryCode { get; set; }
 
-        [RegularExpression("(b2b|b2c|auto|export)", ErrorMessage = "Allowed values in InvoiceType are b2b|b2c|auto|export")]
+        [RegularExpression("(b2b|b2c|auto|export|corrective)", ErrorMessage = "Allowed values in InvoiceType are b2b|b2c|auto|export")]
         public string? InvoiceType { get; set; }
 
         [RegularExpression("(AGREEMENT|DOMESTIC|ABROAD|SELF|OTHER)", ErrorMessage = "Allowed values in AutoInvoiceType are AGREEMENT|DOMESTIC|ABROAD|SELF|OTHER")]
